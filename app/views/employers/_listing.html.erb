@@ -1,0 +1,33 @@
+<div class="grid grid-cols-3 grid-rows-3">
+  <div class="bg-slate-100	p-2 pl-4 font-semibold">
+    Employer
+  </div>
+
+  <div class="bg-slate-100	p-2 pl-4 font-semibold">
+    Date started
+  </div>
+
+  <div class="bg-slate-100	p-2 pl-4 font-semibold">
+    Date ended
+  </div>
+<% Employer.all.each do |employ| %>
+  <div class="p-2 pl-4 border">
+    <%= employ.employer %>
+  </div>
+
+  <div class="p-2 pl-4 border">
+    <%= employ.date_started %>
+  </div>
+
+  <div class="p-2 pl-4 border">
+    <%= employ.date_employment_ended %>
+  </div>
+<% end %>
+</div>
+<%= render 'employers/form' %>
+
+<%= turbo_frame_tag "employements" %>
+
+<div class="form-group inline-block mt-4">
+  <%= link_to "Add Employment", new_employer_path, data: { turbo_frame: "employements" }, class: 'inline items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' %>
+</div>

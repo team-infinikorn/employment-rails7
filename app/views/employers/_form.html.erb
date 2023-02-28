@@ -1,0 +1,35 @@
+<%= form_with(model: @employment || Employer.new, local: true) do |form| %>
+  <% if @employment&.errors&.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employment.errors.count, "error") %> prohibited this employment from being saved:</h2>
+      <ul>
+        <% @employment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="grid gap-y-4 grid-cols-5 mx-auto mt-5 ">
+    <div class="col-span-1">
+      <%= form.label :employer %>
+    </div>
+    <div class="col-span-4">
+      <%= form.text_field :employer, class: 'form-control', required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+    </div>
+    <div class="col-span-1">
+      <%= form.label :date_started %>
+    </div>
+    <div class="col-span-4">
+      <%= form.date_field :date_started, class: 'form-control datepicker', autocomplete: 'off', required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+    </div>
+    <div class="col-span-1">
+      <%= form.label :date_ended %>
+    </div>
+    <div class="col-span-4">
+      <%= form.date_field :date_employment_ended, class: 'form-control datepicker', autocomplete: 'off', required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.submit 'Save', class: 'inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' %>
+  </div>
+<% end %>

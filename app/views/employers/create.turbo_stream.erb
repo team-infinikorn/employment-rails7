@@ -1,0 +1,33 @@
+<%= turbo_stream.update "modal-body" do %>
+  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">Personal Data</h3>
+
+  <div class="mt-2">
+    <% Employer.all.each do |employ| %>
+      <div class="form-group">
+        <%= employ.employer %>
+      </div>
+
+      <div class="form-group">
+        <%= employ.date_started %>
+      </div>
+
+      <div class="form-group">
+        <%= employ.date_employment_ended %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= turbo_frame_tag "employements" %>
+
+  <div class="form-group">
+    <%#= link_to "Add Employment", new_employer_path %>
+    <%= link_to "Add Employment", new_employer_path, data: { turbo_frame: "employements" } %>
+  </div>
+
+  <div class="mt-5 sm:mt-6">
+    <button type="button" data-action="click->modal#close" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
+      Close
+    </button>
+  </div>
+
+<% end %>
