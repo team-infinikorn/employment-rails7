@@ -1,42 +1,51 @@
-<%= form_with model: @personal_data || PersonalData.new, url: personal_data_create_path, local: true do |form| %>
-  <% if @personal_data&.errors&.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@personal_data.errors.count, "error") %> prohibited this personal data from being saved:</h2>
-      <ul>
-      <% @personal_data.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= turbo_frame_tag "modalforms" do %>
+
+  <%= form_with model: @personal_data || PersonalData.new, url: personal_data_create_path, local: true do |form| %>
+    <% if @personal_data&.errors&.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@personal_data.errors.count, "error") %> prohibited this personal data from being saved:</h2>
+        <ul>
+        <% @personal_data.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="grid gap-y-4 grid-cols-5 grid-rows-5 mx-auto mt-5 ">
+      <div class="col-span-1">
+        <%= form.label :first_name %>
+      </div>
+      <div class="col-span-4">
+        <%= form.text_field :first_name, maxlength: 25, required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+      </div>
+      <div class="col-span-1">
+        <%= form.label :last_name %>
+      </div>
+      <div class="col-span-4">
+        <%= form.text_field :last_name, maxlength: 50, required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+      </div>
+      <div class="col-span-1">
+        <%= form.label :nickname %>
+      </div>
+      <div class="col-span-4">
+        <%= form.text_field :nickname, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+      </div>
+      <div class="col-span-1">
+        <%= form.label :email %>
+      </div>
+      <div class="col-span-4">
+        <%= form.email_field :email, required: true, id: "email-field", class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+        <p id="email-error-message" style="color: red;"></p>
+      </div>
+      <div class="col-span-1">
+        <%= form.label :phone %>
+      </div>
+      <div class="col-span-4">
+        <%= form.phone_field :phone, required: true, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", id: "phone-field", class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= form.submit "Save", class: "inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md mt-4 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, maxlength: 25, required: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, maxlength: 50, required: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :nickname %>
-    <%= form.text_field :nickname %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email, required: true, id: "email-field" %>
-    <p id="email-error-message" style="color: red;"></p>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.phone_field :phone, required: true, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", id: "phone-field" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Save", class: "inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"%>
-  </div>
 <% end %>

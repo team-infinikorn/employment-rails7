@@ -1,0 +1,45 @@
+<div class="container mx-auto mt-28 px-5 flex">
+  <div class="grid grid-cols-5 grid-rows-5 mx-auto ">
+    <div class="bg-slate-100	p-2 pl-4 font-semibold">
+      First Name
+    </div>
+
+    <div class="bg-slate-100	p-2 pl-4 font-semibold">
+      Last Name
+    </div>
+
+    <div class="bg-slate-100	p-2 pl-4 font-semibold">
+      Nick Name
+    </div>
+
+    <div class="bg-slate-100	p-2 pl-4 font-semibold">
+      Email
+    </div>
+
+    <div class="bg-slate-100	p-2 pl-4 font-semibold">
+      Phone
+    </div>
+
+    <% PersonalData.all.each do |person| %>
+      <div class="p-2 pl-4 border">
+        <%= person.first_name %>
+      </div>
+
+      <div class="p-2 pl-4 border">
+        <%= person.last_name%>
+      </div>
+
+      <div class="p-2 pl-4 border">
+        <%= person.nickname %>
+      </div>
+
+      <div class="p-2 pl-4 border">
+        <%= person.email %>
+      </div>
+
+      <div class="p-2 pl-4 border">
+        <%= person.phone %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,28 +1,71 @@
-<div data-controller='modal' data-modal-modal-value="#personal-data-modal">
-  <!-- Button to open the modal -->
-  <button type="button" class="inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-action="click->modal#open">Personal Data</button>
+<div class="container mx-auto mt-28 px-5 flex">
+  <div data-controller='modal' data-modal-modal-value="#personal-data-modal" class="w-full">
+    <!-- Button to open the modal -->
+    <div class=" text-right justify-center content-center mr-2">
+      <button type="button" class="px-12 py-8 b-1 border border-blue-500 text-blue-500 font-medium text-2xl rounded-xs hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-action="click->modal#open">Personal Data</button>
+    </div>
 
-  <!-- Modal -->
-  <div id="personal-data-modal" class="hidden fixed z-10 inset-0 overflow-y-auto">
-    <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-      <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-      </div>
-
-      <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-        <div>
-          <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">Personal Data</h3>
-          <div class="mt-2">
-            <%= render 'personal_data/form', personal_data: @personal_data %>
-          </div>
+    <!-- Modal -->
+    <div id="personal-data-modal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+      <div class="flex items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+          <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
         </div>
 
-        <div class="mt-5 sm:mt-6">
-          <button type="button" data-action="click->modal#close" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
-            Close
-          </button>
+        <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+          <%= turbo_frame_tag "modal-body" do %>
+            <div>
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">Personal Data</h3>
+              <div class="mt-2">
+                <%= render 'personal_data/form', personal_data: @personal_data %>
+              </div>
+            </div>
+
+            <div class="mt-5 sm:mt-6">
+              <button type="button" data-action="click->modal#close" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
+                Close
+              </button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-controller='modal' data-modal-modal-value="#employer-data-modal" class="w-full">
+    <!-- Button to open the modal -->
+    <div class="justify-center content-center ml-2">
+    <button type="button" class="px-12 py-8 b-1 border border-blue-500 text-blue-500 font-medium text-2xl rounded-xs hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" data-action="click->modal#open">Employer</button>
+    </div>
+
+    <!-- Modal -->
+    <div id="employer-data-modal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+      <div class="flex items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+          <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+          <%= turbo_frame_tag "modal-body" do %>
+            <div>
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">Personal Data</h3>
+              <div class="mt-2">
+                <%= render 'employers/listing', personal_data: @personal_data %>
+              </div>
+            </div>
+
+            <div class="mt-5 sm:mt-6">
+              <button type="button" data-action="click->modal#close" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
+                Close
+              </button>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= turbo_frame_tag "person_listing" do %>
+  <%= render 'personal_data/listing' %>
+<% end %>

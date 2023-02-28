@@ -6,6 +6,10 @@ class PersonalDataController < ApplicationController
     @personal_data = PersonalData.new(personal_data_params)
 
     @personal_data.save
+    render turbo_stream: [
+      turbo_stream.update(:modalforms, partial: "employers/listing"),
+      turbo_stream.update(:person_listing, partial: "personal_data/listing")
+    ]
   end
 
   private
