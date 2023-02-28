@@ -20,7 +20,7 @@
       Phone
     </div>
 
-    <% PersonalData.all.each do |person| %>
+    <% PersonalData.find_each do |person| %>
       <div class="p-2 pl-4 border">
         <%= person.first_name %>
       </div>

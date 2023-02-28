@@ -1,19 +1,21 @@
 class PersonalDataController < ApplicationController
-  def index
-  end
+  def index; end
 
   def new
-    render turbo_stream: turbo_stream.update(:person_modal, partial: "personal_data/data_modal")
+    render turbo_stream: turbo_stream.update(:person_modal, partial: 'personal_data/data_modal')
   end
 
   def create
     @personal_data = PersonalData.new(personal_data_params)
 
-    @personal_data.save
-    render turbo_stream: [
-      turbo_stream.update(:modalforms, partial: "employers/listing"),
-      turbo_stream.update(:person_listing, partial: "personal_data/listing")
-    ]
+    if @personal_data.save
+      render turbo_stream: [
+        turbo_stream.update(:modal_form_section, partial: 'employers/listing'),
+        turbo_stream.update(:person_data_listing, partial: 'personal_data/listing')
+      ]
+    else
+      render turbo_stream: turbo_stream.update(:person_modal, partial: 'personal_data/data_modal')
+    end
   end
 
   private

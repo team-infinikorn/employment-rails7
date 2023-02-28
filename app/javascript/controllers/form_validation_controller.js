@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = [ "form", "emailField", "errorField", "phoneField" ]
 
   connect() {
-    this.disableFields();
+    this.validateEmail();
     this.setupPhoneValidation();
   }
 
@@ -23,6 +23,8 @@ export default class extends Controller {
   }
 
   showError() {
+    if(!this.emailFieldTarget.value) { return }
+
     this.errorFieldTarget.innerText = "Please enter a valid email address.";
     this.errorFieldTarget.classList.remove("hidden");
   }
@@ -53,9 +55,6 @@ export default class extends Controller {
   }
 
   setupPhoneValidation() {
-    this.phoneFieldTarget.setAttribute("data-parsley-trigger", "change");
-    this.phoneFieldTarget.setAttribute("data-parsley-pattern", "[0-9]{3}-[0-9]{3}-[0-9]{4}");
-
     IMask(this.phoneFieldTarget, {
       mask: "000-000-0000",
     });
