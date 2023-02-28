@@ -8,8 +8,9 @@ class EmployersController < ApplicationController
 
   def create
     @employer = Employer.new(employer_params)
-
     @employer.save
+
+    render turbo_stream: turbo_stream.update(:employeeModal,partial: 'employers/listing')
   end
 
   private

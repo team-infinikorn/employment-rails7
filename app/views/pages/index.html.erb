@@ -21,11 +21,12 @@
         </div>
 
         <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-          <%= turbo_frame_tag "modal-body" do %>
             <div>
               <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">Personal Data</h3>
               <div class="mt-2">
-                <%= render 'employers/listing', personal_data: @personal_data %>
+                <%= turbo_frame_tag "employeeModal" do %>
+                  <%= render 'employers/listing' %>
+                <% end %>
               </div>
             </div>
 
@@ -34,7 +35,6 @@
                 Close
               </button>
             </div>
-          <% end %>
         </div>
       </div>
     </div>
