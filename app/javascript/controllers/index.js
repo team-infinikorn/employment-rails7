@@ -10,5 +10,5 @@ application.register("hello", HelloController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
-import ValidatorController from "./validator_controller"
-application.register("validator", ValidatorController)
+import FormValidationController from "./form_validation_controller"
+application.register("form-validation", FormValidationController)

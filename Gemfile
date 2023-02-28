@@ -57,7 +57,7 @@ gem 'slim-rails'
 gem 'hotwire-rails'
 gem 'tailwindcss-rails'
 gem 'rspec-rails'
-gem 'faker'
+gem 'ffaker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

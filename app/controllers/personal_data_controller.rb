@@ -2,6 +2,10 @@ class PersonalDataController < ApplicationController
   def index
   end
 
+  def new
+    render turbo_stream: turbo_stream.update(:person_modal, partial: "personal_data/data_modal")
+  end
+
   def create
     @personal_data = PersonalData.new(personal_data_params)
 
