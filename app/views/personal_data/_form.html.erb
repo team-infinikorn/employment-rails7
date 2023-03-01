@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "modal_form_section" do %>
-  <%= form_with model: PersonalDatum.last || @personal_data || PersonalDatum.new, data: { controller: "form-validation form-submit", form_validation_target: "form" }, local: true do |form| %>
+  <%= form_with model: PersonalDatum.last || @personal_data || PersonalDatum.new, data: { controller: "form-validation #{'form-submit' unless (PersonalDatum.last || @personal_data.persisted?).present? }", form_validation_target: "form" }, local: true do |form| %>
     <% if @personal_data&.errors&.any? %>
       <%= render "shared/errors", object: @personal_data %>
     <% end %>

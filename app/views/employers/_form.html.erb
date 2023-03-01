@@ -2,7 +2,7 @@
   <%= form_with(model: @employer || Employer.new, url: employers_path, local: true, data: { controller: "form-submit" }) do |form| %>
     <%= render 'employers/fields', form: form %>
     <div class="form-group">
-      <%= form.submit 'Save', class: 'inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500', data: { form_submit_target: "submitButton" } %>
+      <%= form.submit 'Save', class: 'inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md text-white', data: { form_submit_target: "submitButton" } %>
     </div>
   <% end %>
 <% end %>

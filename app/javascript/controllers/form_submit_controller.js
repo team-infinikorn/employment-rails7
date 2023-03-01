@@ -10,7 +10,6 @@ export default class extends Controller {
   }
 
   checkFormValidity() {
-    debugger
     if (this.allRequiredFieldsFilled()) {
       this.enableSubmitButton()
     } else {
