@@ -6,7 +6,8 @@ class EmployersController < ApplicationController
   end
 
   def create
-    @employer = Employer.new(employer_params)
+    @employer = PersonalDatum.last.employers.new(employer_params)
+
     @employer.save
 
     render turbo_stream: turbo_stream.update(:employer_section, partial: 'employers/listing')
