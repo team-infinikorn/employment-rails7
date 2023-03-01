@@ -1,23 +1,27 @@
-<%= turbo_frame_tag "nested_form_section" do %>
-  <%= form_with model: PersonalDatum.last || @personal_data || PersonalDatum.new, data: { controller: "form-validation form-submit", form_validation_target: "form" }, local: true do |form| %>
-    <% if @personal_data&.errors&.any? %>
-      <%= render "shared/errors", object: @personal_data %>
-    <% end %>
-
-    <div data-controller="nested-form" data-nested-form-index-value="QUESTION_RECORD">
-      <template data-nested-form-target="template">
-        <%= form.fields_for :employers, Employer.new, child_index: 'QUESTION_RECORD' do | f | %>
-          <%= render 'employers/fields', form: f %>
-        <% end %>
-      </template>
-
-      <div class="mt-4" data-nested-form-target="links">
-        <%= link_to "Add Employment", 'javascript:void(0)', class: 'mt-4 inline items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500', data: { action: "click->nested-form#add_association click->form-submit#checkFormValidity" } %>
-      </div>
-    </div>
-
-    <div class="actions">
-      <%= form.submit "Save", class: "inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md mt-4 text-white", data: {form_submit_target: "submitButton", form_validation_target: "submitButton" } %>
-    </div>
+<%= form_with model: @personal_data || PersonalDatum.new, data: { controller: "form-validation form-submit", form_validation_target: "form" }, local: true do |form| %>
+  <% if @personal_data&.errors&.any? %>
+    <%= render "shared/errors", object: @personal_data %>
   <% end %>
+
+  <div data-controller="nested-form" data-nested-form-index-value="QUESTION_RECORD">
+    <template data-nested-form-target="template">
+      <%= form.fields_for :employers, Employer.new, child_index: 'QUESTION_RECORD' do | f | %>
+        <%= render 'employers/fields', form: f %>
+      <% end %>
+    </template>
+
+    <div class="question-wrapper-element">
+      <%= form.fields_for :employers, Employer.new do | f | %>
+        <%= render 'employers/fields', form: f %>
+      <% end %>
+    </div>
+
+    <div class="mt-4" data-nested-form-target="links">
+      <%= link_to "Add Employment", 'javascript:void(0)', class: 'mt-4 inline items-center px-4 py-2 border border-transparent font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500', data: { action: "click->nested-form#add_association click->form-submit#checkFormValidity" } %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save", class: "inline-flex justify-center items-center px-4 py-2 border border-transparent font-medium rounded-md mt-4 text-white", data: {form_submit_target: "submitButton", form_validation_target: "submitButton" } %>
+  </div>
 <% end %>

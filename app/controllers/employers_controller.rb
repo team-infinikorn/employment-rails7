@@ -1,8 +1,13 @@
 class EmployersController < ApplicationController
-  def create
-    if PersonalDatum.last.present?
-      @employer = PersonalDatum.last.employers.new(employer_params)
+  def new
+    @employer = Employer.new
 
+    render turbo_stream: turbo_stream.update(:person_modal, partial: 'employers/data_modal' )
+  end
+
+  def create
+    if @personal_data.present?
+      @employer = @personal_data.employers.new(employer_params)
       @employer.save
     else
       @employer = Employer.new(employer_params)

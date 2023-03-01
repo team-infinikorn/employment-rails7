@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "modal_form_section" do %>
-  <%= form_with model: PersonalDatum.last || @personal_data || PersonalDatum.new, data: { controller: "form-validation #{'form-submit' unless (PersonalDatum.last || @personal_data.persisted?).present? }", form_validation_target: "form" }, local: true do |form| %>
+  <%= form_with model: @personal_data || PersonalDatum.new, data: { controller: "form-validation #{'form-submit' unless (@personal_data.persisted?).present? }", form_validation_target: "form" }, local: true do |form| %>
     <% if @personal_data&.errors&.any? %>
       <%= render "shared/errors", object: @personal_data %>
     <% end %>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="col-span-4">
-        <%= form.text_field :first_name, maxlength: 25, required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm', data: { form_submit_target: "requiredField", action: 'change->form-submit#checkFormValidity' } %>
+        <%= form.text_field :first_name, maxlength: 25, required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm', data: { form_submit_target: "requiredField", action: 'input->form-submit#checkFormValidity' } %>
       </div>
 
       <div class="col-span-1">
@@ -27,7 +27,7 @@
       </div>
 
       <div class="col-span-4">
-        <%= form.text_field :last_name, maxlength: 50, required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm', data: { form_submit_target: "requiredField", action: 'change->form-submit#checkFormValidity' }%>
+        <%= form.text_field :last_name, maxlength: 50, required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm', data: { form_submit_target: "requiredField", action: 'input->form-submit#checkFormValidity' }%>
       </div>
 
       <div class="col-span-1">
@@ -43,7 +43,7 @@
       </div>
 
       <div class="col-span-4">
-        <%= form.phone_field :phone, required: true, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", id: "phone-field", data: { form_submit_target: "requiredField", form_validation_target: "phoneField", action: 'change->form-submit#checkFormValidity' }, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+        <%= form.phone_field :phone, required: true, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", id: "phone-field", data: { form_submit_target: "requiredField", form_validation_target: "phoneField", action: 'input->form-submit#checkFormValidity' }, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
       </div>
     </div>
 
