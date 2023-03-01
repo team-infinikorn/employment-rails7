@@ -1,6 +1,4 @@
 class PersonalDataController < ApplicationController
-  def index; end
-
   def new
     @personal_data = PersonalDatum.new
 

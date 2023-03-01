@@ -1,10 +1,4 @@
 class EmployersController < ApplicationController
-  def index; end
-
-  def new
-    render turbo_stream: turbo_stream.append(:employements, partial: 'employers/form')
-  end
-
   def create
     if PersonalDatum.last.present?
       @employer = PersonalDatum.last.employers.new(employer_params)
