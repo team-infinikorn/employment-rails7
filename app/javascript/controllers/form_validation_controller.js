@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import IMask from 'imask';
 
 export default class extends Controller {
-  static targets = [ "form", "emailField", "errorField", "phoneField" ]
+  static get targets() { return ["form", "emailField", "errorField", "phoneField", "requiredField", "submitButton"] }
 
   connect() {
     this.validateEmail();

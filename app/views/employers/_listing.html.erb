@@ -1,40 +1,39 @@
 <%= turbo_frame_tag "employer_section" do %>
-  <% if @employer&.errors&.any? %>
-    <%= render "shared/errors", object: @employer %>
+  <%= turbo_frame_tag "modal_form_section" do %>
+    <% if @employer&.errors&.any? %>
+      <%= render "shared/errors", object: @employer %>
+    <% end %>
+    <% if Employer.all.any?  %>
+      <div class="grid grid-cols-3 grid-rows-3">
+        <div class="bg-slate-100	p-2 pl-4 font-semibold">
+          Employer
+        </div>
+
+        <div class="bg-slate-100	p-2 pl-4 font-semibold">
+          Date started
+        </div>
+
+        <div class="bg-slate-100	p-2 pl-4 font-semibold">
+          Date ended
+        </div>
+
+        <% Employer.find_each do |employ| %>
+          <div class="p-2 pl-4 border">
+            <%= employ.employer %>
+          </div>
+
+          <div class="p-2 pl-4 border">
+            <%= employ.date_started %>
+          </div>
+
+          <div class="p-2 pl-4 border">
+            <%= employ.date_employment_ended %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= render PersonalDatum.last.present? ? 'employers/nested_form' : 'employers/form', employer: @employer %>
   <% end %>
-  <% if Employer.exists?  %>
-    <div class="grid grid-cols-3 grid-rows-3">
-      <div class="bg-slate-100	p-2 pl-4 font-semibold">
-        Employer
-      </div>
-
-      <div class="bg-slate-100	p-2 pl-4 font-semibold">
-        Date started
-      </div>
-
-      <div class="bg-slate-100	p-2 pl-4 font-semibold">
-        Date ended
-      </div>
-
-      <% Employer.find_each do |employ| %>
-        <div class="p-2 pl-4 border">
-          <%= employ.employer %>
-        </div>
-
-        <div class="p-2 pl-4 border">
-          <%= employ.date_started %>
-        </div>
-
-        <div class="p-2 pl-4 border">
-          <%= employ.date_employment_ended %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-  
-  <%= render PersonalDatum.last.present? ? 'employers/nested_form' : 'employers/form', employer: @employer %>
-
-  <%= turbo_frame_tag 'employements' %>
 <% end %>
 
