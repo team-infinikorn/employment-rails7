@@ -1,13 +1,6 @@
 <%= form_with(model: @employment || Employer.new, local: true) do |form| %>
   <% if @employment&.errors&.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@employment.errors.count, "error") %> prohibited this employment from being saved:</h2>
-      <ul>
-        <% @employment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render "shared/errors", object: @employment %>
   <% end %>
   <div class="grid gap-y-4 grid-cols-5 mx-auto mt-5 ">
     <div class="col-span-1">

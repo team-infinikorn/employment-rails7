@@ -2,9 +2,9 @@
   <div data-controller='modal' data-modal-modal-value="#personal-data-modal" class="w-full">
     <!-- Button to open the modal -->
     <div class=" text-right justify-center content-center mr-2">
-      <%= link_to 'Personal Data', personal_data_new_path, class:"px-12 py-8 b-1 border border-blue-500 text-blue-500 font-medium text-2xl rounded-xs hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      <%= link_to 'Personal Data', new_personal_datum_path, class:"px-12 py-8 b-1 border border-blue-500 text-blue-500 font-medium text-2xl rounded-xs hover:text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
     </div>
-    <%= turbo_frame_tag "person_modal"%>
+    <%= turbo_frame_tag "person_modal" %>
   </div>
 
   <div data-controller='modal' data-modal-modal-value="#employer-data-modal" class="w-full">
@@ -40,5 +40,5 @@
 </div>
 
 <%= turbo_frame_tag "person_data_listing" do %>
-  <%= render 'personal_data/listing' if PersonalData.exists? %>
+  <%= render 'personal_data/listing' if PersonalDatum.exists? %>
 <% end %>

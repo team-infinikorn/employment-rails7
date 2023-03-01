@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_27_095631) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_01_074015) do
   create_table "employers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "employer"
     t.date "date_started"
@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_095631) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "employers_id"
+    t.index ["employers_id"], name: "index_personal_data_on_employers_id"
   end
 
 end

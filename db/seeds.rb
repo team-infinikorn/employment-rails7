@@ -11,7 +11,7 @@ def data_params
 end
 
 5.times do
-  PersonalData.create(data_params)
+  PersonalDatum.create(data_params)
 end
 
 2.times do
