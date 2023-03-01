@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import FormValidationController from "./form_validation_controller"
+application.register("form-validation", FormValidationController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
-import FormValidationController from "./form_validation_controller"
-application.register("form-validation", FormValidationController)
+import NestedFormController from "./nested_form_controller"
+application.register("nested-form", NestedFormController)

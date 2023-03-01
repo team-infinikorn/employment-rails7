@@ -10,10 +10,8 @@ def data_params
   }
 end
 
-5.times do
-  PersonalDatum.create(data_params)
-end
+PersonalDatum.create(data_params)
 
 2.times do
-  Employer.create(employer: FFaker::Company.name, date_started: Time.now, date_employment_ended: Time.now + 1.week )
+  PersonalDatum.last.employers.create(employer: FFaker::Company.name, date_started: Time.now, date_employment_ended: Time.now + 1.week )
 end

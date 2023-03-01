@@ -1,0 +1,20 @@
+<div class="grid gap-y-4 grid-cols-5 mx-auto mt-5 ">
+  <div class="col-span-1">
+    <%= form.label :employer %>
+  </div>
+  <div class="col-span-4">
+    <%= form.text_field :employer, class: 'form-control', required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+  </div>
+  <div class="col-span-1">
+    <%= form.label :date_started %>
+  </div>
+  <div class="col-span-4">
+    <%= form.date_field :date_started, class: 'form-control datepicker', autocomplete: 'off', required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+  </div>
+  <div class="col-span-1">
+    <%= form.label :date_ended %>
+  </div>
+  <div class="col-span-4">
+    <%= form.date_field :date_employment_ended, class: 'form-control datepicker', autocomplete: 'off', required: true, class:'block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm' %>
+  </div>
+</div>

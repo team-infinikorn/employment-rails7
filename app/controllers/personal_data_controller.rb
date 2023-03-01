@@ -29,6 +29,7 @@ class PersonalDataController < ApplicationController
         turbo_stream.update(:person_data_listing, partial: 'personal_data/listing')
       ]
     else
+      @personal_data.errors.add(:base, "Failed to replace employers because one or more of the new records could not be saved")
       render turbo_stream: turbo_stream.update(:person_modal, partial: 'personal_data/data_modal')
     end
   end
@@ -36,6 +37,6 @@ class PersonalDataController < ApplicationController
   private
 
   def personal_data_params
-    params.require(:personal_datum).permit(:first_name, :last_name, :nickname, :email, :phone)
+    params.require(:personal_datum).permit(:first_name, :last_name, :nickname, :email, :phone, employers_attributes:{})
   end
 end

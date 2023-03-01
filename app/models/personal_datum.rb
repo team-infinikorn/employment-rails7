@@ -5,4 +5,6 @@ class PersonalDatum < ApplicationRecord
   validates :phone, presence: true, format: { with: /\A\d{3}-\d{3}-\d{4}\z/ }
 
   has_many :employers, dependent: :destroy
+
+  accepts_nested_attributes_for :employers
 end

@@ -6,9 +6,14 @@ class EmployersController < ApplicationController
   end
 
   def create
-    @employer = PersonalDatum.last.employers.new(employer_params)
+    if PersonalDatum.last.present?
+      @employer = PersonalDatum.last.employers.new(employer_params)
 
-    @employer.save
+      @employer.save
+    else
+      @employer = Employer.new(employer_params)
+      @employer.errors.add(:base, "please create personal data first")
+    end
 
     render turbo_stream: turbo_stream.update(:employer_section, partial: 'employers/listing')
   end
